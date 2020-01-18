@@ -1,3 +1,6 @@
+# Modified by Dr Ninkeo
+This cog has been modified by Dr Ninkeo to limit a few values in the main .py file. This is done to make it not crash the bot whenever invalid commands are sent.
+
 # How to install the Notsobot cog
 **Requirements for Python**
 `pip3 install python-aalib pyfiglet numpy pillow wand`
