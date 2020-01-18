@@ -269,6 +269,10 @@ class NotSoBot(commands.Cog):
             i = wand.image.Image(file=img)
             i.format = "png"
             i.alpha_channel = True
+            if scale < 1:
+                return ":warning: `Invalid scale entered. Must be a scale between 1 and 10`", None, 0
+            if scale > 10:
+                return ":warning: `Invalid scale entered. Must be a scale between 1 and 10`", None, 0
             if i.size >= (3000, 3000):
                 return ":warning: `Image exceeds maximum resolution >= (3000, 3000).`", None, 0
             exif.update(
@@ -307,7 +311,7 @@ class NotSoBot(commands.Cog):
             log.error("Error processing magik", exc_info=True)
 
     @commands.command(aliases=["imagemagic", "imagemagick", "magic", "magick", "cas", "liquid"])
-    @commands.cooldown(2, 5, commands.BucketType.user)
+    @commands.cooldown(30, 60, commands.BucketType.user)
     async def magik(self, ctx, urls: ImageFinder = None, scale: int = 2, scale_msg: str = ""):
         """Apply magik to Image(s)\n .magik image_url or .magik image_url image_url_2"""
         if urls is None:
@@ -1167,7 +1171,7 @@ class NotSoBot(commands.Cog):
         return BytesIO(b)
 
     @commands.command(aliases=["jpglitch"])
-    @commands.cooldown(2, 5)
+    @commands.cooldown(10, 15)
     @commands.bot_has_permissions(attach_files=True)
     async def glitch(
         self,
@@ -1465,7 +1469,7 @@ class NotSoBot(commands.Cog):
 
     # Thanks to Iguniisu#9746 for the idea
     @commands.command(aliases=["magik3", "mirror"])
-    @commands.cooldown(2, 5, commands.BucketType.user)
+    @commands.cooldown(30, 60, commands.BucketType.user)
     @commands.bot_has_permissions(attach_files=True)
     async def waaw(self, ctx, urls: ImageFinder = None):
         """Mirror an image vertically right to left"""
@@ -1506,7 +1510,7 @@ class NotSoBot(commands.Cog):
         return final, file_size
 
     @commands.command(aliases=["magik4", "mirror2"])
-    @commands.cooldown(2, 5, commands.BucketType.user)
+    @commands.cooldown(30, 60, commands.BucketType.user)
     @commands.bot_has_permissions(attach_files=True)
     async def haah(self, ctx, urls: ImageFinder = None):
         """Mirror an image vertically left to right"""
@@ -1548,7 +1552,7 @@ class NotSoBot(commands.Cog):
         return final, file_size
 
     @commands.command(aliases=["magik5", "mirror3"])
-    @commands.cooldown(2, 5, commands.BucketType.user)
+    @commands.cooldown(30, 60, commands.BucketType.user)
     @commands.bot_has_permissions(attach_files=True)
     async def woow(self, ctx, urls: ImageFinder = None):
         """Mirror an image horizontally top to bottom"""
@@ -1590,7 +1594,7 @@ class NotSoBot(commands.Cog):
         return final, file_size
 
     @commands.command(aliases=["magik6", "mirror4"])
-    @commands.cooldown(2, 5, commands.BucketType.user)
+    @commands.cooldown(30, 60, commands.BucketType.user)
     @commands.bot_has_permissions(attach_files=True)
     async def hooh(self, ctx, urls: ImageFinder = None):
         """Mirror an image horizontally bottom to top"""
